@@ -1,0 +1,48 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class PrimeFinder {
+
+    public static void main(String[] args) {
+        // Sample list of numbers
+        List<Integer> numbers = Arrays.asList(2, 4, 7, 10, 13, 15, 23, 29, 35, 49, 53);
+
+        // Filter the list to find prime numbers
+        List<Integer> primeNumbers = numbers.stream()
+                .filter(PrimeFinder::isPrime)
+                .collect(Collectors.toList());
+
+        // Output the results
+        System.out.println("Original List: " + numbers);
+        System.out.println("Prime Numbers: " + primeNumbers);
+    }
+
+    /**
+     * Method to check if a number is prime.
+     * Time Complexity: O(sqrt(n))
+     */
+    public static boolean isPrime(int number) {
+        // Numbers less than or equal to 1 are not prime
+        if (number <= 1) {
+            return false;
+        }
+        // 2 is the only even prime number
+        if (number == 2) {
+            return true;
+        }
+        // Exclude all other even numbers
+        if (number % 2 == 0) {
+            return false;
+        }
+
+        // Check odd factors up to the square root of the number
+        for (int i = 3; i <= Math.sqrt(number); i += 2) {
+            if (number % i == 0) {
+                return false; // Found a factor, so it's not prime
+            }
+        }
+
+        return true; // No factors found, it is prime
+    }
+}
