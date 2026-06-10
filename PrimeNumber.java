@@ -25,7 +25,7 @@ public class PrimeFinder {
     public static boolean isPrime(int number) {
         // Numbers less than or equal to 1 are not prime
         if (number <= 1) {
-            return false;
+return false;
         }
         // 2 is the only even prime number
         if (number == 2) {
